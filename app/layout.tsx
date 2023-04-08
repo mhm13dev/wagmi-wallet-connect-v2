@@ -1,8 +1,10 @@
 import { Nunito } from "next/font/google";
 import clsx from "clsx";
+import Providers from "@/components/providers";
 import "./globals.css";
 
-const nunitoSans = Nunito({
+const nunito = Nunito({
+  weight: ["300", "400", "600", "700", "800", "900"],
   variable: "--font-nunito",
   subsets: ["latin-ext"],
 });
@@ -18,8 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={clsx(nunitoSans.variable, "font-nunito")}>
-      <body>{children}</body>
+    <html lang="en" className={clsx(nunito.variable, "font-nunito")}>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
