@@ -1,6 +1,7 @@
 "use client";
 
 import { WagmiConfig } from "wagmi";
+import { ConnectKitProvider } from "connectkit";
 import { wagmiClient } from "@/web3/wagmi/client";
 
 interface Props {
@@ -10,7 +11,9 @@ interface Props {
 const Providers: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <WagmiConfig client={wagmiClient}>{children}</WagmiConfig>
+      <WagmiConfig client={wagmiClient}>
+        <ConnectKitProvider>{children}</ConnectKitProvider>
+      </WagmiConfig>
     </>
   );
 };

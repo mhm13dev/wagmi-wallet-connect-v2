@@ -8,7 +8,7 @@ export default function Home() {
       <Link href="/" className="text-blue-700">
         Go Home
       </Link>
-      <ConnectWallet />
+      {/* <ConnectWallet /> */}
     </div>
   );
 }
