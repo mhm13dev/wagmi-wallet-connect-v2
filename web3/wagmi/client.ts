@@ -1,14 +1,17 @@
 import { configureChains, createClient } from "wagmi";
-import { mainnet, goerli, bsc } from "wagmi/chains";
+import { bsc } from "wagmi/chains";
 import { InjectedConnector } from "wagmi/connectors/injected";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+// import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import { Config } from "@/config";
 
+const supportedChains = [bsc];
+
 const { chains, provider, webSocketProvider } = configureChains(
-  [bsc, mainnet, goerli],
+  supportedChains,
   [
     infuraProvider({
       apiKey: Config.Blockchain.INFURA_API_KEY,
@@ -23,14 +26,21 @@ export const wagmiClient = createClient({
     new InjectedConnector({
       chains,
     }),
-    new WalletConnectConnector({
+    // new WalletConnectConnector({
+    //   chains,
+    //   options: {
+    //     projectId: Config.Blockchain.WALLET_CONNECT_PROJECT_ID,
+    //     showQrModal: false,
+    //   },
+    // }),
+    new WalletConnectLegacyConnector({
       chains,
       options: {
-        projectId: Config.Blockchain.WALLET_CONNECT_PROJECT_ID,
+        qrcode: false,
       },
     }),
     new CoinbaseWalletConnector({
-      chains: [bsc, mainnet, goerli],
+      chains: [bsc],
       options: {
         appName: Config.APP_NAME,
       },
