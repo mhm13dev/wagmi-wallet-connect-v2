@@ -1,12 +1,11 @@
-"use client";
+import KitButton from "@/components/button";
 
-import { ConnectKitButton } from "connectkit";
 
 export default async function Home() {
   return (
     <>
       <h1>Home</h1>
-      <ConnectKitButton />
+      <KitButton/>
     </>
   );
 }
