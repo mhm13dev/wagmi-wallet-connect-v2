@@ -2,7 +2,7 @@
 
 import { WagmiConfig } from "wagmi";
 import { ConnectKitProvider } from "connectkit";
-import { wagmiClient } from "@/web3/wagmi/client";
+import { wagmiConfig } from "@/web3/wagmi/config";
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ interface Props {
 const Providers: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <WagmiConfig client={wagmiClient}>
+      <WagmiConfig config={wagmiConfig}>
         <ConnectKitProvider>{children}</ConnectKitProvider>
       </WagmiConfig>
     </>

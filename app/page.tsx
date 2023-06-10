@@ -1,12 +1,10 @@
-"use client";
+import { CustomConnect } from "@/components/custom-connect-button";
 
-import { ConnectKitButton } from "connectkit";
-
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <h1>Home</h1>
-      <ConnectKitButton />
+      <CustomConnect />
     </>
   );
 }

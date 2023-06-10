@@ -4,5 +4,6 @@ export class Config {
   public static readonly Blockchain = {
     WALLET_CONNECT_PROJECT_ID:
       process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID!,
+    INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY!,
   };
 }
