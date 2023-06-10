@@ -2,6 +2,7 @@ import { configureChains, createConfig } from "wagmi";
 import { bsc } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { infuraProvider } from "wagmi/providers/infura";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { Config } from "@/config";
@@ -21,6 +22,16 @@ export const wagmiConfig = createConfig({
   publicClient,
   webSocketPublicClient,
   connectors: [
+    new MetaMaskConnector({
+      chains,
+    }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: Config.APP_NAME,
+        headlessMode: true,
+      },
+    }),
     // NOT Using WalletConnectConnector (V2) because it does not have good wallet support
     // new WalletConnectConnector({
     //   chains,
@@ -33,13 +44,6 @@ export const wagmiConfig = createConfig({
       chains,
       options: {
         qrcode: false,
-      },
-    }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: Config.APP_NAME,
-        headlessMode: true,
       },
     }),
   ],
