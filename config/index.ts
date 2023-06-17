@@ -6,4 +6,7 @@ export class Config {
       process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID!,
     INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY!,
   };
+
+  public static readonly PRODUCTION_ASSETS_WALLET =
+    "0x9Dc3681D376E8Ddf2051882eee4CddB7b9581eee";
 }

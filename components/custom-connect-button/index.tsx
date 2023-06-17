@@ -21,7 +21,7 @@ export const CustomConnect = () => {
       {({ show }) => {
         return (
           <button onClick={show} className="border px-4 py-1.5 rounded-md">
-            Custom Connect
+            Connect Wallet
           </button>
         );
       }}

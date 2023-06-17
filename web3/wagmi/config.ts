@@ -1,20 +1,14 @@
 import { configureChains, createConfig } from "wagmi";
-import { bsc } from "wagmi/chains";
+import { bsc, sepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
-import { infuraProvider } from "wagmi/providers/infura";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { Config } from "@/config";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [bsc],
-  [
-    infuraProvider({
-      apiKey: Config.Blockchain.INFURA_API_KEY,
-    }),
-    publicProvider(),
-  ]
+  [bsc, sepolia],
+  [publicProvider()]
 );
 
 export const wagmiConfig = createConfig({
