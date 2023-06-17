@@ -1,14 +1,13 @@
 import { configureChains, createConfig } from "wagmi";
-import { bsc, sepolia } from "wagmi/chains";
+import { bsc } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { Config } from "@/config";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [bsc, sepolia],
+  [bsc],
   [publicProvider()]
 );
 

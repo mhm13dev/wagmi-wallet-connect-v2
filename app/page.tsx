@@ -7,7 +7,6 @@ import {
   usePrepareSendTransaction,
   useSendTransaction,
   useWaitForTransaction,
-  useChainId,
   useNetwork,
 } from "wagmi";
 import { parseEther } from "viem";
