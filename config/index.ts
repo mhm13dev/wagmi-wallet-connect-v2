@@ -5,6 +5,7 @@ export class Config {
     WALLET_CONNECT_PROJECT_ID:
       process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID!,
     INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY!,
+    SUPPORTED_CHAIN_IDS: [56],
   };
 
   public static readonly PRODUCTION_ASSETS_WALLET =

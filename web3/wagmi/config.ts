@@ -2,6 +2,7 @@ import { configureChains, createConfig } from "wagmi";
 import { bsc, sepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+// import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { Config } from "@/config";
@@ -33,5 +34,11 @@ export const wagmiConfig = createConfig({
         showQrModal: false,
       },
     }),
+    // new WalletConnectLegacyConnector({
+    //   chains,
+    //   options: {
+    //     qrcode: false,
+    //   },
+    // }),
   ],
 });

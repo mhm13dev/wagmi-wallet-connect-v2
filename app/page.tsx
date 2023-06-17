@@ -8,6 +8,7 @@ import {
   useSendTransaction,
   useWaitForTransaction,
   useNetwork,
+  useSwitchNetwork,
 } from "wagmi";
 import { parseEther } from "viem";
 import { CustomConnect } from "@/components/custom-connect-button";
@@ -18,6 +19,7 @@ export default function Home() {
   const [amount, setAmount] = useState("");
   const { isConnected } = useAccount();
   const { chain } = useNetwork();
+  const { switchNetworkAsync } = useSwitchNetwork();
   const { config } = usePrepareSendTransaction({
     to: Config.PRODUCTION_ASSETS_WALLET,
     value: parseEther(amount as `${number}`),
@@ -28,6 +30,10 @@ export default function Home() {
     hash: sendTrx.data?.hash,
   });
 
+  const isChainSupported = chain?.id
+    ? Config.Blockchain.SUPPORTED_CHAIN_IDS.includes(chain.id)
+    : false;
+
   useEffect(() => {
     console.log("sendTrx");
     console.dir(sendTrx);
@@ -37,6 +43,11 @@ export default function Home() {
     console.log("trxWait");
     console.dir(trxWait);
   }, [trxWait]);
+
+  useEffect(() => {
+    console.log("chain");
+    console.dir(chain);
+  }, [chain]);
 
   const handleSendTrx = async () => {
     if (!sendTrx.sendTransactionAsync) return;
@@ -58,7 +69,7 @@ export default function Home() {
     <div className="p-8">
       <h1>Home</h1>
       <CustomConnect />
-      {isConnected && (
+      {isChainSupported && isConnected && (
         <div className="mt-4 space-y-2">
           <input
             type="number"
@@ -93,6 +104,29 @@ export default function Home() {
                 sendTrx.data?.hash.slice(-4)}
             </a>
           )}
+        </div>
+      )}
+
+      {!isChainSupported && isConnected && (
+        <div className="mt-4 space-y-2">
+          <p className="text-red-500">
+            This chain is not supported by this dApp.
+          </p>
+
+          <button
+            onClick={() => {
+              if (!switchNetworkAsync) return;
+              try {
+                switchNetworkAsync(Config.Blockchain.SUPPORTED_CHAIN_IDS[0]);
+              } catch (e) {
+                console.log("switchNetworkAsync---error");
+                console.dir(e);
+              }
+            }}
+            className="border px-4 py-1.5 rounded-md block"
+          >
+            Switch Network
+          </button>
         </div>
       )}
     </div>
