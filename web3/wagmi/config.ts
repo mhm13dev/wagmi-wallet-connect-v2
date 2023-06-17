@@ -3,6 +3,7 @@ import { bsc, sepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { Config } from "@/config";
 
@@ -26,18 +27,11 @@ export const wagmiConfig = createConfig({
         headlessMode: true,
       },
     }),
-    // NOT Using WalletConnectConnector (V2) because it does not have good wallet support
-    // new WalletConnectConnector({
-    //   chains,
-    //   options: {
-    //     projectId: Config.Blockchain.WALLET_CONNECT_PROJECT_ID,
-    //     showQrModal: false,
-    //   },
-    // }),
-    new WalletConnectLegacyConnector({
+    new WalletConnectConnector({
       chains,
       options: {
-        qrcode: false,
+        projectId: Config.Blockchain.WALLET_CONNECT_PROJECT_ID,
+        showQrModal: false,
       },
     }),
   ],
