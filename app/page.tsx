@@ -7,7 +7,6 @@ import {
   usePrepareSendTransaction,
   useSendTransaction,
   useWaitForTransaction,
-  useChainId,
   useNetwork,
 } from "wagmi";
 import { parseEther } from "viem";
@@ -67,7 +66,6 @@ export default function Home() {
             value={amount}
             onChange={(e) => {
               try {
-                console.log(e.target.value);
                 setAmount(isNaN(Number(e.target.value)) ? "0" : e.target.value);
               } catch {
                 setAmount("0");
